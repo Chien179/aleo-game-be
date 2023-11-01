@@ -1,8 +1,8 @@
 version: "3"
 services:
-  va_core_service:
-    image: adminesollab/dev-repository:va-management-va-core-service-latest
-    container_name: va-core-service
+  aleo_game_be:
+    image: aleo-game-be
+    container_name: aleo_game_be
     env_file:
       - .env
     build:
@@ -14,17 +14,6 @@ services:
     networks:
       - base-network
     command: gunicorn --bind 0.0.0.0:5000 --workers=2 --worker-class=uvicorn.workers.UvicornWorker main:app --log-level=debug -c conf/gunicorn.py --timeout 0
-  
-  worker_transaction:
-    image: adminesollab/dev-repository:va-management-va-core-service-latest
-    env_file:
-      - .env
-    restart: always
-    depends_on:
-      - va_core_service
-    networks:
-      - base-network
-    command: celery --app worker worker -Q transaction -l INFO -c 1
 
 networks:
   base-network:
