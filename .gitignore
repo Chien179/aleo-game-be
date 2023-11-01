@@ -1,7 +1,6 @@
 # Byte-compiled / optimized / DLL files
 venv
 .env
-src/lib/
 __pycache__/
 *.py[cod]
 *$py.class
